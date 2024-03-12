@@ -1,48 +1,59 @@
 const inputBox = document.getElementById("input-box");
+const dueDateInput = document.getElementById("due-date");
 const listContainer = document.getElementById("list-container");
+const addButton = document.querySelector(".form-group button");
 
-function addTask(){
-    if(inputBox.value === ''){
+addButton.addEventListener("click", function(event){
+event.preventDefault();
+if(!inputBox.value.trim()){
+    alert("You must write something!");
+} else{
+    addTask();
+}
+});
+
+
+function addTask() {
+    if (inputBox.value.trim() === '') {
         alert("You must write something!");
     }
-    else{
+    else {
         let li = document.createElement("li");
         li.innerHTML = inputBox.value;
-        listContainer.appendChild(li);
+
+        if (dueDateInput.value !== '') {
+            let dueDate = document.createElement("span");
+            dueDate.innerHTML = " -Due Date: " + dueDateInput.value;
+            li.appendChild(dueDate);
+        }
+
         let span = document.createElement("span");
         span.innerHTML = "\u00d7";
         li.appendChild(span);
 
-
-        let dueDate = document.createElement("span");
-        dueDate.innerHTML = dueDateInput.value;
-        listContainer.appendChild(dueDate);
-
-
-        li.innerHTML += inputBox.value;
         listContainer.appendChild(li);
+        inputBox.value = "";
+        dueDateInput.value = "";
+        saveData();
     }
-    inputBox.value = "";  
-    dueDateInput.value = "";
-    saveData();
 }
 
-listContainer.addEventListener("click", function(e){
-    if(e.target.tagName === "LI"){
+listContainer.addEventListener("click", function (e) {
+    if (e.target.tagName === "LI") {
         e.target.classList.toggle("checked");
         saveData();
     }
-    else if(e.target.tagName === "SPAN"){
+    else if (e.target.tagName === "SPAN") {
         e.target.parentElement.remove();
         saveData();
     }
 }, false);
 
-function saveData(){
-    localStorage.setItem("data",listContainer.innerHTML);
+function saveData() {
+    localStorage.setItem("data", listContainer.innerHTML);
 }
 
-function showTask(){
+function showTask() {
     listContainer.innerHTML = localStorage.getItem("data");
 }
 showTask();

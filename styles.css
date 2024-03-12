@@ -4,7 +4,6 @@
     font-family: 'Poppins', sans-seriff; 
     box-sizing: border-box;
 } 
-/
 .todo-site{
     width: 100%;
     max-width: auto; 
@@ -14,21 +13,15 @@
 }
 .todo-site h2{
     color: hsl(white);
-    display: flex;
+    text-align: center;
     margin-bottom: 20px;
-    justify-content: center;
-    align-items: center;
 }
-.row{
+.form-group{
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    background: #edeef0;
-    border-radius: 30px;
-    padding-left: 20px;
     margin-bottom: 25px;
 }
-input{
+input[type="text"], input[type="date"]{
     flex: 1;
     border: none;
     outline: none;
@@ -39,12 +32,12 @@ input{
 button{
     border: none;
     outline: none;
-    padding: 16px 50px;
+    padding: 12px 25px;
     background: #000000;
     color: #fff;
     font-size: 16px;
     cursor: pointer;
-    border-radius:40px;
+    border-radius:20px;
 }
 button:hover{
     background-color: #00d5ff;
@@ -53,9 +46,10 @@ ul li{
     list-style: none;
     font-size: 17px;
     padding: 12px 8px 12px 50px;
-    user-select: none;
     cursor: pointer;
     position: relative;
+    display: flex;
+    align-items: center;
 }
 ul li::before{
     content: '';
@@ -77,16 +71,8 @@ ul li.checked::before{
     background-image: url(assets/greencheck.png);
 }
 ul li span{
-    position: absolute;
-    right: 0;
-    top: 5px;
-    width: 40px;
-    height: 40px;
-    font-size: 22px;
-    color: #555;
-    line-height: 40px;
-    text-align: center;
-    border-radius: 50%;
+    width: auto;
+    margin-left: 10px;
 }
 ul li span:hover{
     background: #edeef0;
